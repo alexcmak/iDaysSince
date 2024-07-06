@@ -66,8 +66,10 @@ struct EventListingView: View {
             dateFormatter.timeStyle = DateFormatter.Style.none;
             dateFormatter.dateStyle = DateFormatter.Style.medium
         
+        let date_only = dateFormatter.string(from: Date)
+        
         let days = numerOfDaysBetween(firstDate: .now, secondDate: Date)
-        var description = "days"
+        var description: String
        
         switch (days)
         {
@@ -80,12 +82,8 @@ struct EventListingView: View {
         default:
             description = ""
         }
-                    
         
-        let date_only = dateFormatter.string(from: Date)
-        let msg = date_only + " " + description
-        
-        return msg
+        return date_only + " " + description
     }
     
 }
