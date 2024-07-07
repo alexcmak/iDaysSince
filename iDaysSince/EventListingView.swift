@@ -63,27 +63,44 @@ struct EventListingView: View {
     // to just get the date, need a date formatter
     func getDaysSince(Date: Date) ->String {
         let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = DateFormatter.Style.none;
-            dateFormatter.dateStyle = DateFormatter.Style.medium
+            //dateFormatter.timeStyle = DateFormatter.Style.none;
+            //dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         
         let date_only = dateFormatter.string(from: Date)
         
         let days = numerOfDaysBetween(firstDate: .now, secondDate: Date)
+        
+        return date_only + " " + explain(nDaysBetween: days)
+    }
+    
+    func explain(nDaysBetween: Int) -> String {
         var description: String
        
-        switch (days)
+        let nAbsDaysBetween = abs(nDaysBetween)
+        
+        var sDays = "days"
+        if (nAbsDaysBetween == 1)
+        {
+            sDays = "day"
+        }
+        
+        switch (nDaysBetween)
         {
         case 0:
             description = "is today"
-        case _ where days < 0:
-            description = "was " + String(abs(days)) + " days ago"
-        case _ where days > 0:
-            description = "is " + String(days) + " days in future"
+        case 1:
+            description = "is tomorrow"
+        case _ where nDaysBetween < 0:
+           
+            description = "was " + String(abs(nDaysBetween)) + " " + sDays + " ago"
+        case _ where nDaysBetween > 0:
+            description = "is " + String(nDaysBetween) + " " + sDays + " away"
         default:
             description = ""
         }
         
-        return date_only + " " + description
+        return description
     }
     
 }

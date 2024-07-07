@@ -14,9 +14,7 @@ struct EditEventView: View {
     var body: some View {
         Form {
             TextField("Event", text:$event.event)
-            VStack {
-                DatePicker("Date", selection: $event.date, displayedComponents: .date)
-            }
+            DatePicker("Date", selection: $event.date, displayedComponents: .date)
         }
         .navigationTitle("Edit Event")
     }
