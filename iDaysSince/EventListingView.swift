@@ -91,11 +91,10 @@ struct EventListingView: View {
             description = "is today"
         case 1:
             description = "is tomorrow"
-        case _ where nDaysBetween < 0:
-           
-            description = "was " + String(abs(nDaysBetween)) + " " + sDays + " ago"
+        case _ where nDaysBetween < 0:           
+            description = "was " + String(nAbsDaysBetween) + " " + sDays + " ago"
         case _ where nDaysBetween > 0:
-            description = "is " + String(nDaysBetween) + " " + sDays + " away"
+            description = "is " + String(nAbsDaysBetween) + " " + sDays + " away"
         default:
             description = ""
         }
